@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block link_produtos_class %}current-pagina{% endblock %}
+
+{% block container %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'home' %}">Home</a> <span class="divider">/</span></li>
+    <li><a href="{% url 'produtos' %}">Produto</a> <span class="divider">/</span></li>
+    <li><a href="{{ get_absolute_url }}">{{ produto }}</a></li>
+</ul>
+<div class="page-header">
+    <h2>{{ produto }}</h3>
+</div>
+<div class="row">
+    <div class="span12">
+        <h3>Descrição do Produto</h3>
+        <p>{{ produto.descricao|linebreaks }}</p>
+        <h3>Fotos</h3>
+        <ul class="thumbnails">
+            <li class="span3">
+            {% for foto in album %}
+                <img data-src="holder.js/260x180" alt="" src="{{ foto.album.imagem.url }}" />
+            {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

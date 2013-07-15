@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load paginator_tags %}
+
+{% block link_eventos_class %}current-pagina{% endblock %}
+
+{% block container %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'home' %}">Home</a> <span class="divider">/</span></li>
+    <li><a href="{{ get_absolute_url }}">Eventos</a></li>
+</ul>
+<div class="page-header">
+    <h2>Eventos</h2>
+</div>
+<div class="row">
+    <div class="span12">
+        <form class="form-search" action="{% url 'eventos' %}" method="get">
+            <select name="searchano">
+            <option selected value="">Ano</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <select>
+            <select name="searchmes">
+            <option selected value="">Mês</option>
+            <option value="01">Janeiro</option>
+            <option value="02">Fevereiro</option>
+            <option value="03">Março</option>
+            <option value="04">Abril</option>
+            <option value="05">Maio</option>
+            <option value="06">Junho</option>
+            <option value="07">Julho</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+            <select>
+            <button type="submit" class="btn">Pesquisar</button>
+        </form>
+        {% for ev in page_obj.object_list %}
+            <h3><a href="{{ ev.get_absolute_url }}">{{ ev }}</a></h3>
+        {% empty %}
+            <div class="alert alert-info">
+                <p>
+                    Nenhum evento foi encontrado
+                </p>
+            </div>
+        {% endfor %}
+
+        {% paginate request paginator page_obj %}
+
+    </div>
+</div>
+{% endblock %}

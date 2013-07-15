@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block link_eventos_class %}current-pagina{% endblock %}
+
+{% block container %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'home' %}">Home</a> <span class="divider">/</span></li>
+    <li><a href="{% url 'eventos' %}">Eventos</a> <span class="divider">/</span></li>
+    <li><a href="{{ get_absolute_url }}">{{ evento }}</a></li>
+</ul>
+<div class="page-header">
+    <h2>{{ evento }}</h3>
+</div>
+<div class="row">
+    <div class="span12">
+        <h3>Descrição do Evento</h3>
+        <p>{{ evento.descricao|linebreaks }}</p>
+        <h3>Fotos</h3>
+        <ul class="thumbnails">
+            <li class="span3">
+                <a href="{{ evento.album.get_absolute_url }}" class="thumbnail">
+                    <img src="{{ evento.album.principal_foto.imagem.url }}" data-src="holder.js/260x180" alt="">
+                    {{ album }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

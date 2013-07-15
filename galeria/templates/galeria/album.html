@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block container %}
+<ul class="breadcrumb">
+  <li><a href="{% url 'home' %}">Home</a> <span class="divider">/</span></li>
+  <li><a href="{% url 'eventos' %}">Eventos</a> <span class="divider">/</span></li>
+  <li><a href="{{ get_absolute_url }}">Album - {{ album }}</a></li>
+</ul>
+<div class="page-header">
+    <h2>{{ album }}
+        {% if album.evento %}
+        - {{ album.evento }}    
+        {% endif %}
+    </h2>
+</div>
+<div class="row">
+    <div class="span12">
+        <h3>Fotos do Album</h3>
+        <ul class="thumbnails">
+        {% for foto in album.fotos.all %}
+            <li class="span3">
+                <a href="{{ foto.imagem.url }}" class="thumbnail" rel="prettyPhoto">
+                    <img data-src="holder.js/260x180" alt="" src="{{ foto.imagem.url }}" />
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>       
+</div>
+{% endblock %}

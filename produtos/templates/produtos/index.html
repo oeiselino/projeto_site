@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load paginator_tags %}
+
+{% block link_produtos_class %}current-pagina{% endblock %}
+
+{% block container %}
+<ul class="breadcrumb">
+    <li><a href="{% url 'home' %}">Home</a> <span class="divider">/</span></li>
+    <li><a href="{{ get_absolute_url }}">Produtos</a></li>
+</ul>
+<div class="page-header">
+    <h2>Produtos</h2>
+</div>
+<div class="row">
+    <div class="span12">
+        <form class="form-search" action="{% url 'produtos' %}" method="get">
+            <input type="text" placeholder="Nome do Produto" name="searchproduto">
+            <select name="searchcategoria">
+            <option selected value="">Categoria</option>
+            {% for cat in categoria %}
+            <option value="{{ cat.nome }}">{{ cat.nome }}</option>
+            {% endfor %}
+            <select>
+            <button type="submit" class="btn">Pesquisar</button>
+        </form>
+        {% for produto in page_obj.object_list %}
+            <h3><a href="{{ produto.get_absolute_url }}">{{ produto }}</a></h3>
+        {% empty %}
+            <div class="alert alert-info">
+                <p>
+                    Nenhum produto foi encontrado
+                </p>
+            </div>
+        {% endfor %}
+
+        {% paginate request paginator page_obj %}
+
+    </div>
+</div>
+{% endblock %}
