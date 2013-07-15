@@ -176,10 +176,3 @@ LOGGING = {
     }
 }
 
-#E-mails
-DEFAULT_FROM_EMAIL ='Lino <lino@umuarama.pr.gov.br>' 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'lino@umuarama.pr.gov.br'
-EMAIL_HOST_PASSWORD = 'lino5162'
-EMAIL_PORT = 587
