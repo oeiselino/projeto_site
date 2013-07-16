@@ -1,3 +1,0 @@
-Nome: {{ nome }}
-E-mail: {{ email }}
-Mensagem: {{ mensagem }}
